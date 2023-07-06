@@ -1,12 +1,6 @@
 import { getGear } from "../../lib/strava";
-
-// export async function generateStaticParams() {
-//     const athlete = await getAthlete();
-//     return athlete.shoes.map((shoe) => ({
-//         id: shoe.id,
-//         nickname: shoe.nickname,
-//     }));
-// }
+import Pegasus from "../../../public/gears/pegasus40.png";
+import Image from "next/image";
 
 const GearPage = async ({ params }: { params: { id: string } }) => {
     const gear = await getGear(params.id);
@@ -16,11 +10,12 @@ const GearPage = async ({ params }: { params: { id: string } }) => {
         <div>
             <div>gearpage</div>
             <div>my gear: {params.id}</div>
+            <Image src={Pegasus} width={500} />
+            <p className="text-[256px] font-bold">{gear.nickname}</p>
             <p className="text-2xl">{gear.name}</p>
-            <p className="text-2xl">{gear.nickname}</p>
+
             <p className="text-2xl">{gear.converted_distance}</p>
-            <p className="text-2xl">{gear.brand}</p>
-            <p className="text-2xl">{gear.model_name}</p>
+            <p className="text-2xl">{gear.brand_name}</p>
             <p className="text-2xl">{gear.model_name}</p>
         </div>
     );

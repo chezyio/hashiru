@@ -27,15 +27,15 @@ const getAccessToken = async () => {
     return response.json();
 };
 
-export const getActivities = async () => {
+export const getActivities = async (per_page: number = 30) => {
     const { access_token: accessToken } = await getAccessToken();
     const response = await fetch(
-        `${ATHLETES_ENDPOINT}/activities?access_token=${accessToken}`
+        `${ATHLETES_ENDPOINT}/activities?per_page=${per_page}&access_token=${accessToken}`
     );
     const data = await response.json();
 
     const publicActivities = data.filter(
-        (activity: ActivityType) => activity.visibility === "everyone"
+        (activity: any) => activity.visibility === "everyone"
     );
 
     return publicActivities;
@@ -59,7 +59,6 @@ export const getAthlete = async () => {
     return json;
 };
 
-
 export const getGear = async (id: number) => {
     const { access_token: accessToken } = await getAccessToken();
     const res = await fetch(
@@ -67,4 +66,13 @@ export const getGear = async (id: number) => {
     );
     const json = await res.json();
     return json;
-}
+};
+
+export const getAthleteStats = async (userId: number) => {
+    const { access_token: accessToken } = await getAccessToken();
+    const res = await fetch(
+        `${ACTIVITY_ENDPOINT}/athletes/${userId}/stats?access_token=${accessToken}`
+    );
+    const json = await res.json();
+    return json;
+};
