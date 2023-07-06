@@ -8,7 +8,7 @@ const ActivitiesPage = async () => {
     return (
         <div>
             <div className="grid gap-4 lg:grid-cols-3">
-                {activities.map((act) => {
+                {activities.map((act: any) => {
                     return (
                         <Link href={`/activities/${act.id}`} key={act.id}>
                             <Card activity={act} />

@@ -2,7 +2,7 @@ import { getGear } from "../../lib/strava";
 import Pegasus from "../../../public/gears/pegasus40.png";
 import Image from "next/image";
 
-const GearPage = async ({ params }: { params: { id: string } }) => {
+const GearPage = async ({ params }: { params: { id: number } }) => {
     const gear = await getGear(params.id);
     console.log(gear);
 
@@ -10,7 +10,7 @@ const GearPage = async ({ params }: { params: { id: string } }) => {
         <div>
             <div>gearpage</div>
             <div>my gear: {params.id}</div>
-            <Image src={Pegasus} width={500} />
+            <Image src={Pegasus} width={500} alt="image" />
             <p className="text-[256px] font-bold">{gear.nickname}</p>
             <p className="text-2xl">{gear.name}</p>
 

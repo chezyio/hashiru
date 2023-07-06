@@ -15,17 +15,15 @@ const ProfilePage = async () => {
             <br />
             <div>Shoes</div>
             <div>
-                {athlete.shoes.map((shoe) => {
+                {athlete.shoes.map((shoe: any) => {
                     return (
-                        <div>
+                        <div key={shoe.id}>
                             <p>{shoe.name}</p>
                             <p>{shoe.id}</p>
                         </div>
                     );
                 })}
             </div>
-            {/* <Image src={athlete.profile} width={16} height={16} /> */}
-            {console.log(athlete)}
         </div>
     );
 };

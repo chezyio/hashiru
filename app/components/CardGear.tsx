@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import Pegasus from "../../public/gears/pegasus40.png";
 
-const CardGear = ({ shoe }) => {
+const CardGear = ({ shoe }: any) => {
     return (
         <div className="bg-neutral-100 rounded-lg p-6">
             {/* <div className="bg-pink-200 ">xx</div> */}
@@ -10,6 +10,7 @@ const CardGear = ({ shoe }) => {
                 src={Pegasus}
                 width={300}
                 className="relative -top-14 flex mx-auto"
+                alt="image"
             />
             <p className="text-xl font-bold mt-4">{shoe.nickname}</p>
             <p className="text-bae font-semibold">{shoe.name}</p>
@@ -24,7 +25,3 @@ const CardGear = ({ shoe }) => {
 };
 
 export default CardGear;
-
-
-
-
