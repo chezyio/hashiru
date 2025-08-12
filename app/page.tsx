@@ -96,10 +96,32 @@ const HomePage = async () => {
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                     Recent Activities
                 </h2>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {topActivities.map((act) => (
+                <div className="overflow-x-auto flex space-x-6 pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-100 dark:scrollbar-track-gray-800">
+                    {topActivities.map((act, index) => (
                         <Link href={`/activities/${act.id}`} key={act.id}>
-                            <Card activity={act} />
+                            <div className="flex-none w-80 sm:w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 snap-center">
+                                <div className="relative w-full h-64">
+                                    {/* <Image
+                                        src={null}
+                                        alt={act.name}
+                                        fill
+                                        className="object-cover rounded-t-2xl"
+                                    /> */}
+                                    <div>Image</div>
+                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                                        <h3 className="text-lg font-semibold text-white">
+                                            {act.name}
+                                        </h3>
+                                        <p className="text-sm text-gray-200">
+                                            {(act.distance / 1000).toFixed(1)}{" "}
+                                            km •{" "}
+                                            {new Date(
+                                                act.start_date
+                                            ).toLocaleDateString()}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </Link>
                     ))}
                 </div>
