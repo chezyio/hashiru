@@ -13,10 +13,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <main className="container max-w-screen-xl min-h-screen mx-auto px-4">
-                <Header />
-                {children}
-            </main>
+            <body>
+                <main className="container max-w-screen-xl min-h-screen mx-auto px-4">
+                    <Header />
+                    {children}
+                </main>
+            </body>
         </html>
     );
 }
