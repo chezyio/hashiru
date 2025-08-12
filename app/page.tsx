@@ -3,6 +3,7 @@ import { getActivities } from "./lib/strava";
 import Card from "./components/CardActivity";
 import Link from "next/link";
 import Image from "next/image";
+import jogging from "../public/jogging.svg";
 
 const HomePage = async () => {
     const stats = await getAthleteStats(93040956);
@@ -26,7 +27,7 @@ const HomePage = async () => {
                 </Link>
                 <div className="mt-12">
                     <Image
-                        src="/fitness-illustration.svg"
+                        src={jogging}
                         width={500}
                         height={400}
                         alt="Fitness tracking illustration"
