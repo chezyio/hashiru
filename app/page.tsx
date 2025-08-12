@@ -41,7 +41,7 @@ const HomePage = async () => {
                     Your Health at a Glance
                 </h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in">
+                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in">
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                             Total Runs
                         </p>
@@ -50,7 +50,7 @@ const HomePage = async () => {
                         </p>
                     </div>
                     <div
-                        className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in"
+                        className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in"
                         style={{ animationDelay: "0.1s" }}
                     >
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -68,7 +68,7 @@ const HomePage = async () => {
                         </div>
                     </div>
                     <div
-                        className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in"
+                        className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in"
                         style={{ animationDelay: "0.2s" }}
                     >
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -99,7 +99,7 @@ const HomePage = async () => {
                 <div className="overflow-x-auto flex space-x-6 pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-100 dark:scrollbar-track-gray-800">
                     {topActivities.map((act, index) => (
                         <Link href={`/activities/${act.id}`} key={act.id}>
-                            <div className="flex-none w-80 sm:w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 snap-center">
+                            <div className="flex-none w-80 sm:w-96 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-lg transition-shadow duration-300 snap-center">
                                 <div className="relative w-full h-64">
                                     {/* <Image
                                         src={null}
@@ -108,7 +108,7 @@ const HomePage = async () => {
                                         className="object-cover rounded-t-2xl"
                                     /> */}
                                     <div>Image</div>
-                                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/70 to-transparent p-4">
                                         <h3 className="text-lg font-semibold text-white">
                                             {act.name}
                                         </h3>

@@ -14,7 +14,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <main className="container max-w-screen-xl min-h-screen mx-auto px-4">
+                <main className="container max-w-(--breakpoint-xl) min-h-screen mx-auto px-4">
                     <Header />
                     {children}
                 </main>
