@@ -1,4 +1,9 @@
-import Header from "./components/Header";
+import { ThemeProvider } from "./(app)/components/theme_provider";
+import { LayoutProvider } from "./(app)/hooks/use_layout";
+import { ActiveThemeProvider } from "./(app)/components/active_theme";
+import { fontVariables } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+
 import "./globals.css";
 
 export const metadata = {
@@ -8,16 +13,22 @@ export const metadata = {
 
 export default function RootLayout({
     children,
-}: {
+}: Readonly<{
     children: React.ReactNode;
-}) {
+}>) {
     return (
-        <html lang="en">
-            <body>
-                <main className="container max-w-(--breakpoint-xl) min-h-screen mx-auto px-4">
-                    <Header />
-                    {children}
-                </main>
+        <html lang="en" suppressHydrationWarning>
+            <body
+                className={cn(
+                    "text-foreground group/body overscroll-none font-sans antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]",
+                    fontVariables
+                )}
+            >
+                <ThemeProvider>
+                    <LayoutProvider>
+                        <ActiveThemeProvider>{children}</ActiveThemeProvider>
+                    </LayoutProvider>
+                </ThemeProvider>
             </body>
         </html>
     );

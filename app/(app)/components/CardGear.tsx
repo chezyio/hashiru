@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Pegasus from "../../public/gears/pegasus40.png";
+import Pegasus from "../../../public/gears/pegasus40.png";
 
 const CardGear = ({ shoe }: any) => {
     return (

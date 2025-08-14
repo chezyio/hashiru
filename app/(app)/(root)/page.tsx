@@ -1,39 +1,53 @@
-import { getAthleteStats } from "./lib/strava";
-import { getActivities } from "./lib/strava";
-import Card from "./components/CardActivity";
+import { getAthleteStats } from "../lib/strava";
+import { getActivities } from "../lib/strava";
+
 import Link from "next/link";
 import Image from "next/image";
-import jogging from "../public/jogging.svg";
+import jogging from "../../../public/jogging.svg";
+import {
+    PageActions,
+    PageHeader,
+    PageHeaderDescription,
+    PageHeaderHeading,
+} from "../components/PageHeader";
+
+import { Button } from "../../../components/ui/button";
+import { fr } from "zod/v4/locales/index.cjs";
+
+const title = "Your Fitness Journey, Tracked";
+const description =
+    "Monitor your runs, set goals, and stay motivated with insights backed by your Strava data.";
 
 const HomePage = async () => {
     const stats = await getAthleteStats(93040956);
     const topActivities = await getActivities(6);
 
     return (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 dark:bg-gray-900 min-h-screen">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
             {/* Hero Section */}
-            <section className="py-16 sm:py-24 flex flex-col items-center justify-center text-center">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
-                    Your Fitness Journey, Tracked
-                </h1>
-                <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mb-8">
-                    Monitor your runs, set goals, and stay motivated with
-                    insights backed by your Strava data.
-                </p>
-                <Link href="/activities">
-                    <button className="px-8 py-3 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors duration-300">
-                        Explore Your Activities
-                    </button>
-                </Link>
-                <div className="mt-12">
-                    <Image
-                        src={jogging}
-                        width={500}
-                        height={400}
-                        alt="Fitness tracking illustration"
-                        className="object-contain"
-                    />
-                </div>
+            <section>
+                <PageHeader>
+                    <PageHeaderHeading className="max-w-4xl">
+                        {title}
+                    </PageHeaderHeading>
+                    <PageHeaderDescription>{description}</PageHeaderDescription>
+                    <PageActions>
+                        <Button asChild size="sm">
+                            <Link href="/docs/installation">Get Started</Link>
+                        </Button>
+                        <Button asChild size="sm" variant="ghost">
+                            <Link href="/docs/components">View Components</Link>
+                        </Button>
+                    </PageActions>
+                </PageHeader>
+
+                <Image
+                    src={jogging}
+                    width={500}
+                    height={400}
+                    alt="Fitness tracking illustration"
+                    className="object-contain"
+                />
             </section>
 
             {/* Stats and Dashboard */}
@@ -42,7 +56,7 @@ const HomePage = async () => {
                     Your Health at a Glance
                 </h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in">
+                    <div className="p-6 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in">
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                             Total Runs
                         </p>
@@ -51,7 +65,7 @@ const HomePage = async () => {
                         </p>
                     </div>
                     <div
-                        className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in"
+                        className="p-6 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in"
                         style={{ animationDelay: "0.1s" }}
                     >
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -69,7 +83,7 @@ const HomePage = async () => {
                         </div>
                     </div>
                     <div
-                        className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in"
+                        className="p-6 rounded-2xl shadow-xs hover:shadow-md transition-shadow duration-300 animate-fade-in"
                         style={{ animationDelay: "0.2s" }}
                     >
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -126,23 +140,6 @@ const HomePage = async () => {
                         </Link>
                     ))}
                 </div>
-            </section>
-
-            {/* Privacy Section */}
-            <section className="py-16 bg-gray-100 dark:bg-gray-800 rounded-2xl text-center">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                    Your Data, Your Control
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-                    Your fitness data is securely stored and accessible only to
-                    you. We prioritize your privacy with industry-standard
-                    encryption, ensuring your information remains yours alone.
-                </p>
-                <Link href="/privacy">
-                    <span className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
-                        Learn more about our privacy approach
-                    </span>
-                </Link>
             </section>
         </div>
     );
