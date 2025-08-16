@@ -32,9 +32,9 @@ const Page = async (props: { params: Promise<{ id: number }> }) => {
     const { id } = params;
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+        <div className="min-h-screen transition-colors duration-200">
             {/* Hero Section */}
-            <header className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 py-12 px-6 md:px-12">
+            <header className="py-12 px-6 md:px-12">
                 <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
                     {activity.name}
                 </h1>
@@ -61,7 +61,7 @@ const Page = async (props: { params: Promise<{ id: number }> }) => {
 
             {/* Map Section */}
             <section className="py-8 px-6 md:px-12">
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden h-80 md:h-96 flex items-center justify-center">
+                <div className="bg-gray-100 rounded-xl overflow-hidden h-80 md:h-96 flex items-center justify-center">
                     <p className="text-gray-500 dark:text-gray-400">
                         Interactive Map (Implement using
                         activity.map.summary_polyline)
@@ -169,7 +169,7 @@ const Page = async (props: { params: Promise<{ id: number }> }) => {
             </section>
 
             {/* Additional Info Section */}
-            <section className="py-8 px-6 md:px-12 bg-gray-50 dark:bg-gray-800">
+            <section className="py-8 px-6 md:px-12">
                 <h2 className="text-3xl font-bold mb-6">More Details</h2>
                 <div className="space-y-4">
                     <p className="text-gray-700 dark:text-gray-300">
@@ -237,7 +237,7 @@ const StatCard = ({
     label: string;
     value: string | number;
 }) => (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+    <div className="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
         <div className="flex items-center space-x-2 mb-1">
             {icon}
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
