@@ -2,7 +2,8 @@ import { getGear } from "../../lib/strava";
 import Pegasus from "../../../public/gears/pegasus40.png";
 import Image from "next/image";
 
-const GearPage = async ({ params }: { params: { id: number } }) => {
+const GearPage = async (props: { params: Promise<{ id: number }> }) => {
+    const params = await props.params;
     const gear = await getGear(params.id);
     console.log(gear);
 

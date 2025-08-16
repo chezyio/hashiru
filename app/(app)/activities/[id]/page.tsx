@@ -1,6 +1,7 @@
-import { getActivity } from "@/app/lib/strava";
+import { getActivity } from "../../lib/strava";
 
-const page = async ({ params }: { params: { id: number } }) => {
+const page = async (props: { params: Promise<{ id: number }> }) => {
+    const params = await props.params;
     const activity = await getActivity(params.id);
     console.log(activity);
 
