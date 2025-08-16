@@ -5,33 +5,16 @@ export const siteConfig = {
     description:
         "A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.",
     links: {
-        twitter: "https://twitter.com/shadcn",
         github: "https://github.com/shadcn-ui/ui",
     },
     navItems: [
         {
-            href: "/docs/installation",
-            label: "Docs",
+            href: "/gears",
+            label: "Gears",
         },
         {
-            href: "/docs/components",
-            label: "Components",
-        },
-        {
-            href: "/blocks",
-            label: "Blocks",
-        },
-        {
-            href: "/charts/area",
-            label: "Charts",
-        },
-        {
-            href: "/themes",
-            label: "Themes",
-        },
-        {
-            href: "/colors",
-            label: "Colors",
+            href: "/activities",
+            label: "Activities",
         },
     ],
 };
