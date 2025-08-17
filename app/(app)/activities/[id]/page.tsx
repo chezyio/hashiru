@@ -10,6 +10,7 @@ import {
     MessageSquare,
     Bike,
 } from "lucide-react";
+import ActivityMap from "../../components/ActivityMap"; // Adjust the import path as needed
 
 // Utility functions for formatting
 const formatDistance = (meters: number) => `${(meters / 1000).toFixed(2)} km`;
@@ -61,12 +62,7 @@ const Page = async (props: { params: Promise<{ id: number }> }) => {
 
             {/* Map Section */}
             <section className="py-8 px-6 md:px-12">
-                <div className="bg-gray-100 rounded-xl overflow-hidden h-80 md:h-96 flex items-center justify-center">
-                    <p className="text-gray-500 dark:text-gray-400">
-                        Interactive Map (Implement using
-                        activity.map.summary_polyline)
-                    </p>
-                </div>
+                <ActivityMap polyline={activity.map?.summary_polyline || ""} />
             </section>
 
             {/* Stats Grid */}
