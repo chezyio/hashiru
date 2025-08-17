@@ -28,7 +28,7 @@ const getAccessToken = async () => {
 };
 
 export const getActivities = async (
-    per_page: number = 30,
+    per_page: number = 20,
     page: number = 1
 ) => {
     const { access_token: accessToken } = await getAccessToken();
