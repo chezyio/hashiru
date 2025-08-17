@@ -27,10 +27,13 @@ const getAccessToken = async () => {
     return response.json();
 };
 
-export const getActivities = async (per_page: number = 30) => {
+export const getActivities = async (
+    per_page: number = 30,
+    page: number = 1
+) => {
     const { access_token: accessToken } = await getAccessToken();
     const response = await fetch(
-        `${ATHLETES_ENDPOINT}/activities?per_page=${per_page}&access_token=${accessToken}`
+        `${ATHLETES_ENDPOINT}/activities?per_page=${per_page}&page=${page}&access_token=${accessToken}`
     );
     const data = await response.json();
 
