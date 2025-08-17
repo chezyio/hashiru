@@ -55,22 +55,21 @@ const ActivitiesPage = async ({
     const endPage = startPage + maxVisiblePages - 1;
 
     return (
-        <div className="min-h-screen py-12 px-6 md:px-12 bg-background">
-            <header className="mb-10">
-                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                    Your Activities
+        <div className="container mx-auto px-4 min-h-screen transition-colors duration-200">
+            <section className="py-12">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                    Activities
                 </h1>
                 <p className="mt-2 text-lg text-muted-foreground">
-                    Explore your Strava journey with beautifully crafted
-                    summaries
+                    Run run run
                 </p>
-            </header>
+            </section>
 
             {/* Activities Grid */}
-            <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {activities.map((act: any) => (
                     <Link href={`/activities/${act.id}`} key={act.id}>
-                        <Card className="hover:shadow-xl transition-shadow duration-300">
+                        <Card className="duration-300">
                             <CardHeader>
                                 <CardTitle className="flex items-center space-x-2">
                                     {getActivityIcon(
