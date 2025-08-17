@@ -10,9 +10,7 @@ import {
     MessageSquare,
     Bike,
 } from "lucide-react";
-import ActivityMap from "../../components/ActivityMap"; // Adjust the import path as needed
-
-// Utility functions for formatting
+import ActivityMap from "../../components/ActivityMap";
 const formatDistance = (meters: number) => `${(meters / 1000).toFixed(2)} km`;
 const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
@@ -33,10 +31,11 @@ const Page = async (props: { params: Promise<{ id: number }> }) => {
     const { id } = params;
 
     return (
+        
         <div className="min-h-screen transition-colors duration-200">
             {/* Hero Section */}
             <header className="py-12 px-6 md:px-12">
-                <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
                     {activity.name}
                 </h1>
                 <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">

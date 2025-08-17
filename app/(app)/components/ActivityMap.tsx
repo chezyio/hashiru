@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import polyline from "@mapbox/polyline";
+import { useTheme } from "next-themes";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
@@ -14,59 +15,81 @@ const ActivityMap: React.FC<ActivityMapProps> = ({
     polyline: encodedPolyline,
 }) => {
     const mapContainer = useRef<HTMLDivElement>(null);
+    const map = useRef<mapboxgl.Map | null>(null);
+    const { theme, resolvedTheme } = useTheme();
 
     useEffect(() => {
         if (!mapContainer.current || !encodedPolyline) return;
 
-        const map = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: "mapbox://styles/mapbox/streets-v12", // Use 'dark-v11' for dark mode if needed
-            center: [0, 0],
-            zoom: 2,
-        });
+        // Determine map style based on theme
+        const mapStyle =
+            (theme || resolvedTheme) === "dark"
+                ? "mapbox://styles/mapbox/dark-v11"
+                : "mapbox://styles/mapbox/streets-v12";
 
-        map.on("load", () => {
-            const decodedCoords = polyline.decode(encodedPolyline);
-            const coords = decodedCoords.map(
-                ([lat, lng]) => [lng, lat] as [number, number]
-            );
+        // Initialize map only if not already initialized
+        if (!map.current) {
+            map.current = new mapboxgl.Map({
+                container: mapContainer.current,
+                style: mapStyle,
+                center: [103.755, 1.373],
+                zoom: 12,
+            });
 
-            if (coords.length === 0) return;
+            map.current.on("load", () => {
+                const decodedCoords = polyline.decode(encodedPolyline);
+                const coords = decodedCoords.map(
+                    ([lat, lng]) => [lng, lat] as [number, number]
+                );
 
-            map.addSource("route", {
-                type: "geojson",
-                data: {
-                    type: "Feature",
-                    properties: {},
-                    geometry: {
-                        type: "LineString",
-                        coordinates: coords,
+                if (coords.length === 0) return;
+
+                map.current!.addSource("route", {
+                    type: "geojson",
+                    data: {
+                        type: "Feature",
+                        properties: {},
+                        geometry: {
+                            type: "LineString",
+                            coordinates: coords,
+                        },
                     },
-                },
+                });
+
+                map.current!.addLayer({
+                    id: "route",
+                    type: "line",
+                    source: "route",
+                    layout: {
+                        "line-join": "round",
+                        "line-cap": "round",
+                    },
+                    paint: {
+                        "line-color":
+                            (theme || resolvedTheme) === "dark"
+                                ? "#3b82f6"
+                                : "#888", // Blue for dark mode, gray for light
+                        "line-width": 8,
+                    },
+                });
+
+                // Fit the map to the route bounds
+                const bounds = new mapboxgl.LngLatBounds(coords[0], coords[0]);
+                coords.forEach((coord) => bounds.extend(coord));
+                map.current!.fitBounds(bounds, { padding: 50 });
             });
+        } else {
+            // Update map style if theme changes
+            map.current.setStyle(mapStyle);
+        }
 
-            map.addLayer({
-                id: "route",
-                type: "line",
-                source: "route",
-                layout: {
-                    "line-join": "round",
-                    "line-cap": "round",
-                },
-                paint: {
-                    "line-color": "#888",
-                    "line-width": 8,
-                },
-            });
-
-            // Fit the map to the route bounds
-            const bounds = new mapboxgl.LngLatBounds(coords[0], coords[0]);
-            coords.forEach((coord) => bounds.extend(coord));
-            map.fitBounds(bounds, { padding: 50 });
-        });
-
-        return () => map.remove();
-    }, [encodedPolyline]);
+        return () => {
+            if (map.current) {
+                map.current.remove();
+                map.current = null;
+            }
+        };
+    }, [encodedPolyline, theme, resolvedTheme]);
 
     return (
         <div
